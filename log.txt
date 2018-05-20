@@ -1,0 +1,16 @@
+Runtime error: invalid identifier entered at:2018-05-20T09:53:52.185
+
+Data base failure at: 2018-05-20T09:53:52.186
+[se.kth.IV1350.dbHandler.ItemInventory.findItemDTO(ItemInventory.java:35)
+ se.kth.IV1350.controller.Controller.scanItem(Controller.java:73)
+ se.kth.IV1350.view.View.sampleExecution(View.java:38)
+ se.kth.IV1350.startUp.Main.main(Main.java:29)]
+
+Runtime error: invalid identifier entered at:2018-05-20T09:53:52.230
+
+Data base failure at: 2018-05-20T09:53:52.231
+[se.kth.IV1350.dbHandler.ItemInventory.findItemDTO(ItemInventory.java:35)
+ se.kth.IV1350.controller.Controller.scanItem(Controller.java:73)
+ se.kth.IV1350.view.View.sampleExecution(View.java:38)
+ se.kth.IV1350.startUp.Main.main(Main.java:29)]
+
