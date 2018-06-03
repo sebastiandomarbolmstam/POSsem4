@@ -39,9 +39,6 @@ public class CompleteSale {
 	public EndOfSaleDTO assembleSaleInformation(SaleDTO activeSaleDTO, double paidAmount) {
 		totalWithTaxes = calculateFinalTotal(activeSaleDTO);
 		change = calculateChange(totalWithTaxes, paidAmount);
-		preTotalRevenue = logHandler.readRevenueLog();
-		totalRevenue = preTotalRevenue + activeSaleDTO.getRunningTotal();;
-		logHandler.writeRevenueLog(totalRevenue);
 		EndOfSaleDTO saleInformation = new EndOfSaleDTO(activeSaleDTO, change, paidAmount, totalWithTaxes);
 		return saleInformation;
 	}
@@ -91,5 +88,12 @@ public class CompleteSale {
 	 */
 	public void addRevenueObserver(RevenueObserver obs) {
 		revenueObservers.add(obs);
+	}
+
+	public void calculateTotalRevenue(SaleDTO activeSaleDTO) {
+		preTotalRevenue = logHandler.readRevenueLog();
+		totalRevenue = preTotalRevenue + activeSaleDTO.getRunningTotal();
+		notifyObservers();
+		logHandler.writeRevenueLog(totalRevenue);		
 	}
 }

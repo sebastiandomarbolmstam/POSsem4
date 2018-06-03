@@ -22,7 +22,7 @@ public class LogHandler {
 	 */
 	public void logInFile(String message) {
 		try {
-			File logFile = new File("log.txt");
+			File logFile = new File("exceptionLog.txt");
 			fw = new FileWriter(logFile,true);
 			fw.write(message);
 			fw.close();

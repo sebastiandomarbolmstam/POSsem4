@@ -26,6 +26,7 @@ public class View {
 	 */
 	public void sampleExecution() {
 		RevenueObserver observer = new TotalRevenueView();
+		contr.addRevenueObserver(observer);
 		CustomerDummy customer = new CustomerDummy();
 		int i=0;
 		
@@ -45,10 +46,7 @@ public class View {
 				System.out.println(dbf.getMessage() + "\n");
 			}
 		}
-		
 		contr.pay(customer.getAmountPaid());
-		contr.addRevenueObserver(observer);
-		contr.notifyObservers();
 		i++;
 		}
 	}

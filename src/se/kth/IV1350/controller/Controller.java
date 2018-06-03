@@ -30,7 +30,7 @@ public class Controller {
 	private String infoToPrint;
 	private AccountingSystemHandler accSys;
 	private LogHandler logHandler;
-	CompleteSale completedSale;
+	private CompleteSale completedSale;
 	
 	/**
 	 * Constructs a new controller using the specified inventory, printer, accounting system accSys
@@ -41,12 +41,14 @@ public class Controller {
 	 * @param accSys This instance of {@link AccountingSystemHandler} is used as a representation of a 
 	 * accounting system that is not included in the application.
 	 * @param logHandler object of file handling class.
+	 * @param completedSale2 
 	 */
-	public Controller(ItemInventory inventory, Printer printer, AccountingSystemHandler accSys, LogHandler logHandler) {
+	public Controller(ItemInventory inventory, Printer printer, AccountingSystemHandler accSys, LogHandler logHandler, CompleteSale completedSale) {
 		this.inventory = inventory;
 		this.printer = printer;
 		this.accSys = accSys;
 		this.logHandler = logHandler;
+		this.completedSale = completedSale;
 	}
 
 	/**
@@ -88,12 +90,12 @@ public class Controller {
 	 * that should be returned as change.
 	 */
 	public void pay(double paidAmount) {
-		completedSale = new CompleteSale(logHandler);
 		saleInformationDTO = completedSale.assembleSaleInformation(activeSaleDTO, paidAmount);
 		accSys.updateAccountingSystem(saleInformationDTO);
 		inventory.updateItemInventory(saleInformationDTO);
 		infoToPrint = completedSale.createReceipt(saleInformationDTO);
 		printer.printReceipt(infoToPrint);
+		completedSale.calculateTotalRevenue(activeSaleDTO);
 	}
 	
 	/**
@@ -107,8 +109,8 @@ public class Controller {
 	/**
 	 * Method call to notify all observers in observer list in lower layer.
 	 */
-	public void notifyObservers() {
-		completedSale.notifyObservers();
+	//public void notifyObservers() {
+		//completedSale.notifyObservers();
 		
-	}
+	//}
 }
